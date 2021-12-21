@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChangeEvent, useState, FC } from "react";
 
-function App() {
+export const App: FC = () => {
+  const [text, setText] = useState<string>("");
+  const [todos, setTodos] = useState<string[]>([]);
+
+  const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
+  const addTodo = () => {
+    const latestTodos = [...todos];
+    latestTodos.push(text);
+    setTodos(latestTodos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>ToDoアプリ</h1>
+      <input type="text" value={text} onChange={onChangeText} />
+      <button onClick={addTodo}>追加</button>
+      <ul>
+        {todos.map((todo, index) => {
+          return (
+            <li key={todo}>
+              <p>
+                {todo} {index}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
-}
+};
 
 export default App;
