@@ -1,6 +1,6 @@
-import { ChangeEvent, useState, FC } from "react";
+import { ChangeEvent, useState } from "react";
 
-export const App: FC = () => {
+export const App = () => {
   const [text, setText] = useState<string>("");
   const [todos, setTodos] = useState<string[]>([]);
 
