@@ -14,6 +14,12 @@ export const App = () => {
     setTodos(latestTodos);
   };
 
+  const deleteTodo = (index: number) => {
+    const latestTodos = [...todos];
+    latestTodos.splice(index, 1);
+    setTodos(latestTodos);
+  };
+
   return (
     <>
       <h1>ToDoアプリ</h1>
@@ -26,6 +32,13 @@ export const App = () => {
               <p>
                 {todo} {index}
               </p>
+              <button
+                onClick={() => {
+                  deleteTodo(index);
+                }}
+              >
+                削除
+              </button>
             </li>
           );
         })}
