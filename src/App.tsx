@@ -4,6 +4,8 @@ export const App = () => {
   const [text, setText] = useState<string>("");
   const [updatedText, setUpdatedText] = useState<string>("");
   const [todos, setTodos] = useState<string[]>([]);
+  const [searchWord, setSearchWord] = useState<string>("");
+  const [searchedTodos, setSearchedTodos] = useState<string[]>([])
 
   const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -11,6 +13,10 @@ export const App = () => {
 
   const onChangeUpdatedText = (e: ChangeEvent<HTMLInputElement>) => {
     setUpdatedText(e.target.value);
+  };
+
+  const onChangeSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value);
   };
 
   const addTodo = () => {
@@ -31,6 +37,14 @@ export const App = () => {
     setTodos(latestTodos);
   };
 
+  const searchTodos = () => {
+    let searchedTodos: string[] = [];
+    searchedTodos = todos.filter((todo) => {
+      return todo === searchWord;
+    });
+    setSearchedTodos(searchedTodos)
+  };
+
   return (
     <>
       <h1>ToDoアプリ</h1>
@@ -40,7 +54,7 @@ export const App = () => {
       <ul>
         {todos.map((todo, index) => {
           return (
-            <li key={todo}>
+            <li key={index}>
               <p>
                 {todo} {index}
               </p>
@@ -60,6 +74,23 @@ export const App = () => {
               </button>
             </li>
           );
+        })}
+      </ul>
+      <input type="text" value={searchWord} onChange={onChangeSearchWord} />
+      <button
+        onClick={() => {
+          searchTodos();
+        }}
+      >
+        検索
+      </button>
+      <ul>
+        {searchedTodos.map((searchedTodo, index) => {
+          return (
+            <li key={index}>
+              {searchedTodo} {index}
+            </li>
+          )
         })}
       </ul>
     </>
