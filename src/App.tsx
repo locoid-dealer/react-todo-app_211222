@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 
 export const App = () => {
   const [text, setText] = useState<string>("");
-  const [updatedText, setUpdatedText] = useState<string>("");
+  const [updateText, setUpdateText] = useState<string>("");
   const [todos, setTodos] = useState<string[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
   const [searchedTodos, setSearchedTodos] = useState<string[]>([])
@@ -11,8 +11,8 @@ export const App = () => {
     setText(e.target.value);
   };
 
-  const onChangeUpdatedText = (e: ChangeEvent<HTMLInputElement>) => {
-    setUpdatedText(e.target.value);
+  const onChangeUpdateText = (e: ChangeEvent<HTMLInputElement>) => {
+    setUpdateText(e.target.value);
   };
 
   const onChangeSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ export const App = () => {
 
   const updateTodo = (index: number) => {
     const latestTodos = [...todos];
-    latestTodos.splice(index, 1, updatedText);
+    latestTodos.splice(index, 1, updateText);
     setTodos(latestTodos);
   };
 
@@ -49,7 +49,7 @@ export const App = () => {
     <>
       <h1>ToDoアプリ</h1>
       <input type="text" value={text} onChange={onChangeText} />
-      <input type="text" value={updatedText} onChange={onChangeUpdatedText} />
+      <input type="text" value={updateText} onChange={onChangeUpdateText} />
       <button onClick={addTodo}>追加</button>
       <ul>
         {todos.map((todo, index) => {
