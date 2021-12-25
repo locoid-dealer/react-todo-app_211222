@@ -1,4 +1,6 @@
 import { ChangeEvent, useState } from "react";
+import { TodoList } from "./components/TodoList";
+import { SearchedTodoList } from "./components/SearchedTodoList";
 
 export const App = () => {
   const [text, setText] = useState<string>("");
@@ -51,31 +53,7 @@ export const App = () => {
       <input type="text" value={text} onChange={onChangeText} />
       <input type="text" value={updateText} onChange={onChangeUpdateText} />
       <button onClick={addTodo}>追加</button>
-      <ul>
-        {todos.map((todo, index) => {
-          return (
-            <li key={index}>
-              <p>
-                {todo} {index}
-              </p>
-              <button
-                onClick={() => {
-                  deleteTodo(index);
-                }}
-              >
-                削除
-              </button>
-              <button
-                onClick={() => {
-                  updateTodo(index);
-                }}
-              >
-                更新
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <TodoList todos={todos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
       <input type="text" value={searchWord} onChange={onChangeSearchWord} />
       <button
         onClick={() => {
@@ -84,15 +62,7 @@ export const App = () => {
       >
         検索
       </button>
-      <ul>
-        {searchedTodos.map((searchedTodo, index) => {
-          return (
-            <li key={index}>
-              {searchedTodo} {index}
-            </li>
-          );
-        })}
-      </ul>
+      <SearchedTodoList searchedTodos={searchedTodos} />
     </>
   );
 };
