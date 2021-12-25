@@ -5,7 +5,7 @@ export const App = () => {
   const [updateText, setUpdateText] = useState<string>("");
   const [todos, setTodos] = useState<string[]>([]);
   const [searchWord, setSearchWord] = useState<string>("");
-  const [searchedTodos, setSearchedTodos] = useState<string[]>([])
+  const [searchedTodos, setSearchedTodos] = useState<string[]>([]);
 
   const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -42,7 +42,7 @@ export const App = () => {
     searchedTodos = todos.filter((todo) => {
       return todo === searchWord;
     });
-    setSearchedTodos(searchedTodos)
+    setSearchedTodos(searchedTodos);
   };
 
   return (
@@ -90,7 +90,7 @@ export const App = () => {
             <li key={index}>
               {searchedTodo} {index}
             </li>
-          )
+          );
         })}
       </ul>
     </>
