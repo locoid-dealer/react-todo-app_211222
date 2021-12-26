@@ -1,11 +1,12 @@
 type Props = {
   todos: string[];
+  updateText: string;
   deleteTodo: (index: number) => void;
-  updateTodo: (index: number) => void;
+  updateTodo: (index: number, updateText: string) => void;
 };
 
 export const TodoList = (props: Props) => {
-  const { todos, deleteTodo, updateTodo } = props;
+  const { todos, updateText, deleteTodo, updateTodo } = props;
 
   return (
     <>
@@ -25,7 +26,7 @@ export const TodoList = (props: Props) => {
               </button>
               <button
                 onClick={() => {
-                  updateTodo(index);
+                  updateTodo(index, updateText);
                 }}
               >
                 更新
