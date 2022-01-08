@@ -43,6 +43,7 @@ export const App = () => {
   return (
     <>
       <h1>ToDoアプリ</h1>
+      <p>2022.1.8 contribution</p>
       <input type="text" value={text} onChange={onChangeText} />
       <input type="text" value={updateText} onChange={onChangeUpdateText} />
       <button onClick={() => {
